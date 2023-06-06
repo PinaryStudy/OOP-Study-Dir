@@ -16,7 +16,34 @@ enum ErrorType: String {
 }
 
 class Error {
+    let operation = ["+", "-", "/", "*"]
+    
     public func checkError(operations: [String], numbers: [Float]) -> ErrorType {
+        
+        // 공백 입력
+        if operations.count == 0 && numbers.count == 0 {
+            return ErrorType.NullError
+        }
+        
+        // 올바르지 않은 수식
+        if !checkOperation(operations: operations) {
+            return ErrorType.InvalidExpressionError
+        }
+        
+        // 올바르지 않은 수 ex) 1 3 + 4
+        if operations.count + 1 != numbers.count {
+            return ErrorType.InvalidNumberError
+        }
+        
         return ErrorType.none
+    }
+    
+    private func checkOperation(operations: [String]) -> Bool {
+        for op in operations {
+            if !operation.contains(op) {
+                return false
+            }
+        }
+        return true
     }
 }
