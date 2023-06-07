@@ -11,3 +11,5 @@ const val INVALID_FORMULAS_ERROR = "수식의 시작과 끝은 숫자여야 합�
 const val CONTINUOUS_NUMBER_ERROR = "숫자가 연달아 입력되었습니다."
 const val CONTINUOUS_OPERATOR_ERROR = "연산자가 연달아 입력되었습니다."
 
+const val DIVIDE_ZERO_ERROR = "0으로 나눌 수 없습니다."
+
