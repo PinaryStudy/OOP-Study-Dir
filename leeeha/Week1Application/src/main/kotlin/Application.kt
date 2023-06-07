@@ -1,5 +1,5 @@
 import domain.Calculator
-import util.SPACE
+import util.Splitter
 import util.Validator
 import view.InputView
 import view.OutputView
@@ -13,7 +13,7 @@ fun main() {
     val input = inputView.readInputString()
     validator.checkNullOrEmpty(input)
 
-    val values = input!!.split(SPACE)
+    val values = Splitter().splitStringBySpace(input!!)
     validator.apply {
         checkSpace(values)
         checkOperatorType(values)
