@@ -1,7 +1,10 @@
 package util
 
-class Validator {
-    fun checkNullOrEmpty(input: String?) {
+class Validator(
+    private val input: String?,
+    private val values: List<String>
+) {
+    fun checkNullOrEmpty() {
         if (input == null) {
             throw NullPointerException(NULL_INPUT_ERROR)
         }
@@ -11,13 +14,13 @@ class Validator {
         }
     }
 
-    fun checkSpace(values: List<String>) {
-        for (e in values) {
-            if (e.trim().isEmpty()) throw IllegalArgumentException(INVALID_SPACE_ERROR)
+    fun checkInvalidSpace() {
+        for (str in values) {
+            if (str.trim().isEmpty()) throw IllegalArgumentException(INVALID_SPACE_ERROR)
         }
     }
 
-    fun checkOperatorType(values: List<String>) {
+    fun checkOperatorType() {
         for (str in values) {
             if (!isNumeric(str)) {
                 isValidOperator(str)
@@ -25,27 +28,22 @@ class Validator {
         }
     }
 
-    private fun isValidOperator(str: String) {
+    private fun isValidOperator(operator: String) {
         for (value in Operator.values()) {
-            if (value.op == str) return
+            if (value.op == operator) return
         }
         throw IllegalArgumentException(INVALID_OPERATOR_ERROR)
     }
 
-    fun checkFormulas(values: List<String>) {
+    fun checkFormulas() {
         // 숫자나 문자가 연달아 입력된 경우
-        checkContinuousType(values)
+        checkContinuousType()
 
         // 문자열의 시작과 끝이 숫자가 아닌 경우
-        checkStartEnd(values)
+        checkStartEnd()
     }
 
-    private fun checkStartEnd(values: List<String>) {
-        if (!isNumeric(values[0]) || !isNumeric(values.last()))
-            throw IllegalArgumentException(INVALID_FORMULAS_ERROR)
-    }
-
-    private fun checkContinuousType(values: List<String>) {
+    private fun checkContinuousType() {
         val types = mutableListOf<Type>()
 
         for (str in values) {
@@ -61,6 +59,11 @@ class Validator {
                 types.add(Type.OPERATOR)
             }
         }
+    }
+
+    private fun checkStartEnd() {
+        if (!isNumeric(values[0]) || !isNumeric(values.last()))
+            throw IllegalArgumentException(INVALID_FORMULAS_ERROR)
     }
 
     private fun isNumeric(str: String): Boolean {

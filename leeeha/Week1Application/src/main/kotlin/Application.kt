@@ -7,17 +7,17 @@ import view.OutputView
 fun main() {
     val inputView = InputView()
     val outputView = OutputView()
-    val validator = Validator()
 
     outputView.printInputGuide()
     val input = inputView.readInputString()
-    validator.checkNullOrEmpty(input)
+    val values = Splitter().splitStringBySpace(input)
 
-    val values = Splitter().splitStringBySpace(input!!)
+    val validator = Validator(input, values)
     validator.apply {
-        checkSpace(values)
-        checkOperatorType(values)
-        checkFormulas(values)
+        checkNullOrEmpty()
+        checkInvalidSpace()
+        checkOperatorType()
+        checkFormulas()
     }
 
     val calculator = Calculator()
