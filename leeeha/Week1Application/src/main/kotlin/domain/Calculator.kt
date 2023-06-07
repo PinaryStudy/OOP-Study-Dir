@@ -14,14 +14,18 @@ class Calculator {
                 MUL.op -> sum *= values[i + 1].toInt()
                 DIV.op -> {
                     val num = values[i + 1].toInt()
-                    if(num == 0){
-                        throw ArithmeticException(DIVIDE_ZERO_ERROR)
-                    }
+                    checkDivideByZero(num)
                     sum /= num
                 }
             }
         }
 
         return sum
+    }
+
+    fun checkDivideByZero(num: Int) {
+        if(num == 0){
+            throw ArithmeticException(DIVIDE_ZERO_ERROR)
+        }
     }
 }
