@@ -23,7 +23,7 @@ class Calculator {
         return sum
     }
 
-    fun checkDivideByZero(num: Int) {
+    private fun checkDivideByZero(num: Int) {
         if(num == 0){
             throw ArithmeticException(DIVIDE_ZERO_ERROR)
         }
