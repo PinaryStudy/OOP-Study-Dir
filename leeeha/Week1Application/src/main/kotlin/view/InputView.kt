@@ -1,7 +1,7 @@
 package view
 
 class InputView {
-    fun readInput(): String? {
+    fun readInputString(): String? {
         return readLine()
     }
 }

@@ -18,8 +18,8 @@ class Validator {
     }
 
     fun checkOperatorType(values: List<String>) {
-        for(str in values){
-            if(!isNumeric(str)) {
+        for (str in values) {
+            if (!isNumeric(str)) {
                 isValidOperator(str)
             }
         }
@@ -37,10 +37,10 @@ class Validator {
         checkContinuousType(values)
 
         // 문자열의 시작과 끝이 숫자가 아닌 경우
-        checkStartEndPoint(values)
+        checkStartEnd(values)
     }
 
-    private fun checkStartEndPoint(values: List<String>) {
+    private fun checkStartEnd(values: List<String>) {
         if (!isNumeric(values[0]) || !isNumeric(values.last()))
             throw IllegalArgumentException(INVALID_FORMULAS_ERROR)
     }

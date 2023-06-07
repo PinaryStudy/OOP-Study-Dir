@@ -1,5 +1,6 @@
 package util
 
+const val SPACE = " "
 const val INPUT_GUIDE_MSG = "계산할 문자열 입력: "
 
 const val NULL_INPUT_ERROR = "입력값이 널입니다."

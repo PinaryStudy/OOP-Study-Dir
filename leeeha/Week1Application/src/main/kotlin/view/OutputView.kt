@@ -7,7 +7,7 @@ class OutputView {
         print(INPUT_GUIDE_MSG)
     }
 
-    fun printResult() {
-
+    fun printResult(result: Int) {
+        println(result)
     }
 }
