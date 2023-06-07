@@ -17,8 +17,15 @@ class Validator {
         }
     }
 
-    fun checkOperator(str: String) {
-        // 4개의 연산자 중 하나와 일치하면 바로 리턴
+    fun checkOperatorType(values: List<String>) {
+        for(str in values){
+            if(!isNumeric(str)) {
+                isValidOperator(str)
+            }
+        }
+    }
+
+    private fun isValidOperator(str: String) {
         for (value in Operator.values()) {
             if (value.op == str) return
         }
@@ -26,11 +33,11 @@ class Validator {
     }
 
     fun checkFormulas(values: List<String>) {
-        // 문자열의 시작과 끝이 숫자가 아닌 경우
-        checkStartEndPoint(values)
-
         // 숫자나 문자가 연달아 입력된 경우
         checkContinuousType(values)
+
+        // 문자열의 시작과 끝이 숫자가 아닌 경우
+        checkStartEndPoint(values)
     }
 
     private fun checkStartEndPoint(values: List<String>) {

@@ -14,6 +14,7 @@ fun main() {
 
     val values = input!!.split(" ")
     validator.checkSpace(values)
+    validator.checkOperatorType(values)
     validator.checkFormulas(values)
 
 //    val numbers = mutableListOf<Int>()
