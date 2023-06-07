@@ -4,6 +4,8 @@ class Validator(
     private val input: String?,
     private val values: List<String>
 ) {
+    private val types = mutableListOf<Type>()
+
     fun checkNullOrEmpty() {
         if (input == null) {
             throw NullPointerException(NULL_INPUT_ERROR)
@@ -37,28 +39,27 @@ class Validator(
 
     fun checkFormulas() {
         // 숫자나 문자가 연달아 입력된 경우
-        checkContinuousType()
+        checkContinuousTypes()
 
         // 문자열의 시작과 끝이 숫자가 아닌 경우
         checkStartEnd()
     }
 
-    private fun checkContinuousType() {
-        val types = mutableListOf<Type>()
-
+    private fun checkContinuousTypes() {
         for (str in values) {
             if (isNumeric(str)) {
-                if (types.isNotEmpty() && types.last() == Type.NUMBER) {
-                    throw IllegalArgumentException(CONTINUOUS_NUMBER_ERROR)
-                }
-                types.add(Type.NUMBER)
-            } else {
-                if (types.isNotEmpty() && types.last() == Type.OPERATOR) {
-                    throw IllegalArgumentException(CONTINUOUS_OPERATOR_ERROR)
-                }
-                types.add(Type.OPERATOR)
+                handleExceptionByType(Type.NUMBER, CONTINUOUS_NUMBER_ERROR)
+                continue
             }
+            handleExceptionByType(Type.OPERATOR, CONTINUOUS_OPERATOR_ERROR)
         }
+    }
+
+    private fun handleExceptionByType(type: Type, message: String) {
+        if (types.isNotEmpty() && types.last() == type) {
+            throw IllegalArgumentException(message)
+        }
+        types.add(type)
     }
 
     private fun checkStartEnd() {
