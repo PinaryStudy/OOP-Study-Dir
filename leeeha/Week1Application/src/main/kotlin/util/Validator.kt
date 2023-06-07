@@ -4,7 +4,6 @@ class Validator(
     private val input: String?,
     private val values: List<String>
 ) {
-    private val types = mutableListOf<Type>()
 
     fun checkNullOrEmpty() {
         if (input == null) {
@@ -46,20 +45,22 @@ class Validator(
     }
 
     private fun checkContinuousTypes() {
+        var types = mutableListOf<Type>()
         for (str in values) {
             if (isNumeric(str)) {
-                handleExceptionByType(Type.NUMBER, CONTINUOUS_NUMBER_ERROR)
+                types = updateTypes(types, Type.NUMBER, CONTINUOUS_NUMBER_ERROR)
                 continue
             }
-            handleExceptionByType(Type.OPERATOR, CONTINUOUS_OPERATOR_ERROR)
+            types = updateTypes(types, Type.OPERATOR, CONTINUOUS_OPERATOR_ERROR)
         }
     }
 
-    private fun handleExceptionByType(type: Type, message: String) {
+    private fun updateTypes(types: MutableList<Type>, type: Type, message: String): MutableList<Type> {
         if (types.isNotEmpty() && types.last() == type) {
             throw IllegalArgumentException(message)
         }
         types.add(type)
+        return types
     }
 
     private fun checkStartEnd() {
