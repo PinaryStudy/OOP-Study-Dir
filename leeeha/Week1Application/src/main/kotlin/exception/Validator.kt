@@ -1,4 +1,6 @@
-package util
+package exception
+
+import util.*
 
 class Validator(
     private val input: String?,

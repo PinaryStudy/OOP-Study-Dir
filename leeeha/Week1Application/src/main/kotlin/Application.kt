@@ -1,6 +1,6 @@
 import domain.Calculator
 import util.Splitter
-import util.Validator
+import exception.Validator
 import view.InputView
 import view.OutputView
 
