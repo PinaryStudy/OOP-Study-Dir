@@ -1,12 +1,12 @@
 package view
 
-import domain.Car
+import domain.model.Car
 import util.COMMA
 import util.DIVIDER
 import util.WINNER
 
 class OutputView {
-    fun printRacingResult(movingStatePerCar: List<Car>) {
+    fun printRaceResult(movingStatePerCar: List<Car>) {
         for(car in movingStatePerCar){
             print("${car.name} : ")
             println(car.movingState)

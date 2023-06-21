@@ -1,4 +1,4 @@
-import domain.CarRacing
+import domain.CarRace
 import util.Validator
 import view.InputView
 import view.OutputView
@@ -12,12 +12,12 @@ fun main() {
     validator.validateLengthOfCarName(carNames)
     val repeatNumber = inputView.readRepeatNumber()
 
-    val carRacing = CarRacing(carNames)
-    carRacing.moveForwardRepeatTimes(repeatNumber)
+    val carRace = CarRace(carNames)
+    carRace.moveForwardRepeatTimes(repeatNumber)
 
-    val racingResult = carRacing.getMovingStatePerCar()
-    val winners = carRacing.judgeWinner()
+    val raceResult = carRace.getMovingStatePerCar()
+    val winners = carRace.judgeWinner()
 
-    outputView.printRacingResult(racingResult)
+    outputView.printRaceResult(raceResult)
     outputView.printWinners(winners)
 }

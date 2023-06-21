@@ -1,8 +1,9 @@
 package domain
 
+import domain.model.Car
 import util.FORWARD_CHAR
 
-class CarRacing(carNames: List<String>) {
+class CarRace(carNames: List<String>) {
     private val movingStatePerCar = mutableListOf<Car>()
 
     init {
@@ -44,7 +45,6 @@ class CarRacing(carNames: List<String>) {
     private fun sortByMovingDistance() {
         movingStatePerCar.sortByDescending { it.movingState.length }
     }
-
 
     fun getMovingStatePerCar() : List<Car> {
         return movingStatePerCar
