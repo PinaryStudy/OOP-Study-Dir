@@ -20,7 +20,7 @@ class InputView {
     }
 
     /** 자동차들의 이동 횟수 */
-    fun readMovingNumber(): Int {
+    fun readRepeatNumber(): Int {
         val sc = Scanner(System.`in`)
         return sc.nextInt()
     }

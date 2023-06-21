@@ -18,9 +18,9 @@ class Validator {
     }
 
     companion object {
-        const val MIN_CAR_NAME_LENGTH = 1
-        const val MAX_CAR_NAME_LENGTH = 5
-        const val MIN_CAR_NUM = 2
-        const val MAX_CAR_NUM = 5
+        private const val MIN_CAR_NAME_LENGTH = 1
+        private const val MAX_CAR_NAME_LENGTH = 5
+        private const val MIN_CAR_NUM = 2
+        private const val MAX_CAR_NUM = 5
     }
 }
